@@ -1,6 +1,12 @@
 import MovieItem from '../movie-item/movie-item';
 
-function Main(): JSX.Element {
+type PromoMovie = {
+    title: string,
+    genre: string,
+    date: string
+}
+
+function Main({title, genre, date}: PromoMovie): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -38,10 +44,10 @@ function Main(): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__year">{date}</span>
               </p>
 
               <div className="film-card__buttons">
