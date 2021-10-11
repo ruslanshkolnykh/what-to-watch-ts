@@ -6,7 +6,8 @@ import Film from '../film/film';
 import Review from '../review/review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
-import {AppRoute} from '../../const';
+import {AppRoute,AuthorizationStatus} from '../../const';
+import PrivateRoute from '../private-route/private-route';
 
 function App(): JSX.Element {
   return (
@@ -18,9 +19,13 @@ function App(): JSX.Element {
         <Route path={AppRoute.Login} exact>
           <Login />
         </Route>
-        <Route path={AppRoute.MyList} exact>
-          <MyList />
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.MyList}
+          render={() => <MyList />}
+          authorizationStatus={AuthorizationStatus.Auth}
+        >
+        </PrivateRoute>
         <Route path={AppRoute.Film} exact>
           <Film />
         </Route>
