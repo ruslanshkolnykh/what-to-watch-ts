@@ -6,27 +6,28 @@ import Film from '../film/film';
 import Review from '../review/review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
+import {AppRoute} from '../../const';
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact>
+        <Route path={AppRoute.Main} exact>
           <Main title={'testTitle'} genre={'genre'} date={'2014'} />
         </Route>
-        <Route path='/login' exact>
+        <Route path={AppRoute.Login} exact>
           <Login />
         </Route>
-        <Route path='/mylist' exact>
+        <Route path={AppRoute.MyList} exact>
           <MyList />
         </Route>
-        <Route path='/films/:id' exact>
+        <Route path={AppRoute.Film} exact>
           <Film />
         </Route>
-        <Route path='/films/:id/review' exact>
+        <Route path={AppRoute.Review} exact>
           <Review />
         </Route>
-        <Route path='/player/:id' exact>
+        <Route path={AppRoute.Player} exact>
           <Player />
         </Route>
         <Route>
