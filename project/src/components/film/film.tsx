@@ -1,5 +1,6 @@
 function Film(): JSX.Element {
-  return (<>
+  return (
+    <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
@@ -59,8 +60,7 @@ function Film(): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
-                   height="327"/>
+              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
@@ -87,18 +87,17 @@ function Film(): JSX.Element {
               </div>
 
               <div className="film-card__text">
-                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge
-                  Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.</p>
+                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave`&#39;`s friend and protege.</p>
 
-                <p>Gustave prides himself on providing first-class service to the hotel's guests, including satisfying
-                  the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies
-                  mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her
-                  murder.</p>
+                <p>Gustave prides himself on providing first-class service to the hotel`&#39;`s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave`&#39;`s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
 
-                <p className="film-card__director"><strong>Director: Wes Anderson</strong></p>
+                <p className="film-card__director">
+                  <strong>Director: Wes Anderson</strong>
+                </p>
 
-                <p className="film-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-                  and other</strong></p>
+                <p className="film-card__starring">
+                  <strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong>
+                </p>
               </div>
             </div>
           </div>
