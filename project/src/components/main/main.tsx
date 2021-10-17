@@ -1,8 +1,11 @@
-import MovieItem from '../movie-item/movie-item';
-import {PromoMovie} from '../../types/types';
+import {FilmType} from '../../types/types';
+import MovieList from '../movie-list/movie-list';
 
+type Props ={
+  films:FilmType[],
+}
 
-function Main({title, genre, date}: PromoMovie): JSX.Element {
+function Main({films}:Props): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -40,10 +43,10 @@ function Main({title, genre, date}: PromoMovie): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{films[0].name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{date}</span>
+                <span className="film-card__genre">{films[0].genre}</span>
+                <span className="film-card__year">{films[0].released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -103,26 +106,7 @@ function Main({title, genre, date}: PromoMovie): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
-            <MovieItem />
+            <MovieList films={films} />
           </div>
 
           <div className="catalog__more">

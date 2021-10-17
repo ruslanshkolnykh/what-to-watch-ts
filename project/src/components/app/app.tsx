@@ -20,7 +20,7 @@ function App({films, reviews}: Props): JSX.Element {
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <Main title={films[0].name} genre={films[0].genre} date={films[0].released} />
+          <Main films={films} />
         </Route>
         <Route path={AppRoute.Login} exact>
           <Login />
