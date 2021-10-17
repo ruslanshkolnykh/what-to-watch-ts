@@ -8,13 +8,19 @@ import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 import {AppRoute,AuthorizationStatus} from '../../const';
 import PrivateRoute from '../private-route/private-route';
+import {FilmType, ReviewType} from '../../types/types';
 
-function App(): JSX.Element {
+type Props ={
+  films:FilmType[],
+  reviews:ReviewType[],
+}
+
+function App({films, reviews}: Props): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <Main title={'testTitle'} genre={'genre'} date={'2014'} />
+          <Main title={films[0].name} genre={films[0].genre} date={films[0].released} />
         </Route>
         <Route path={AppRoute.Login} exact>
           <Login />

@@ -1,10 +1,6 @@
 import MovieItem from '../movie-item/movie-item';
+import {PromoMovie} from '../../types/types';
 
-type PromoMovie = {
-    title: string,
-    genre: string,
-    date: string
-}
 
 function Main({title, genre, date}: PromoMovie): JSX.Element {
   return (
