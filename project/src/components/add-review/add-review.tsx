@@ -1,6 +1,8 @@
 import Logo from '../logo/logo';
 import {FilmType} from '../../types/types';
 import SendCommentForm from '../send-comment-form/send-comment-form';
+import {AppRoute} from '../../const';
+import {Link} from 'react-router-dom';
 
 type Props = {
   film: FilmType,
@@ -21,10 +23,10 @@ function AddReview({film}:Props): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{film.name}</a>
+                <Link to={AppRoute.Film.replace(':id', String(film.id))} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <a href="/" className="breadcrumbs__link">Add review</a>
+                <Link to={AppRoute.Review.replace(':id', String(film.id))} className="breadcrumbs__link">Add review</Link>
               </li>
             </ul>
           </nav>
@@ -36,7 +38,7 @@ function AddReview({film}:Props): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a href="/" className="user-block__link">Sign out</a>
+              <Link to={AppRoute.Main} className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>

@@ -1,6 +1,8 @@
 import {FilmType} from '../../types/types';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
+import {AppRoute} from '../../const';
+import {Link} from 'react-router-dom';
 
 type Props = {
   film:FilmType,
@@ -27,7 +29,7 @@ function Film({film}:Props): JSX.Element {
                 </div>
               </li>
               <li className="user-block__item">
-                <a href="/" className="user-block__link">Sign out</a>
+                <Link to={AppRoute.Main} className="user-block__link">Sign out</Link>
               </li>
             </ul>
           </header>
@@ -53,7 +55,7 @@ function Film({film}:Props): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link to={AppRoute.Review.replace(':id', String(film.id))} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -69,13 +71,13 @@ function Film({film}:Props): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="/" className="film-nav__link">Overview</a>
+                    <Link to={AppRoute.Main} className="film-nav__link">Overview</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Details</a>
+                    <Link to={AppRoute.Main} className="film-nav__link">Details</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Reviews</a>
+                    <Link to={AppRoute.Main} className="film-nav__link">Reviews</Link>
                   </li>
                 </ul>
               </nav>

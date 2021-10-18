@@ -2,6 +2,8 @@ import {FilmType} from '../../types/types';
 import MovieList from '../movie-list/movie-list';
 import Header from '../header/header';
 import Footer from '../footer/footer';
+import {AppRoute} from '../../const';
+import {Link} from 'react-router-dom';
 
 type Props ={
   films:FilmType[],
@@ -57,34 +59,34 @@ function Main({films}:Props): JSX.Element {
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="/" className="catalog__genres-link">All genres</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">All genres</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Comedies</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Comedies</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Crime</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Crime</Link>
             </li>
             <li className="catalog__genres-item">
               <a href="/" className="catalog__genres-link">Documentary</a>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Dramas</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Dramas</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Horror</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Horror</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Kids & Family</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Kids & Family</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Romance</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Romance</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Sci-Fi</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Sci-Fi</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Thrillers</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Thrillers</Link>
             </li>
           </ul>
 
