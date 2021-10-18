@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Login from '../login/login';
 import MyList from '../my-list/my-list';
 import Film from '../film/film';
-import Review from '../review/review';
+import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 import {AppRoute,AuthorizationStatus} from '../../const';
@@ -28,18 +28,24 @@ function App({films, reviews}: Props): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyList />}
+          render={() => <MyList films={films.filter((film) =>film.is_favorite)}/>}
           authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>
-        <Route path={AppRoute.Film} exact>
-          <Film />
+        <Route path={AppRoute.Film} render={(routeProps) =>
+          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <Film film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
+        exact
+        >
         </Route>
-        <Route path={AppRoute.Review} exact>
-          <Review />
+        <Route path={AppRoute.Review} render={(routeProps) =>
+          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <AddReview film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
+        exact
+        >
         </Route>
-        <Route path={AppRoute.Player} exact>
-          <Player />
+        <Route path={AppRoute.Player} render={(routeProps) =>
+          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <Player film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
+        exact
+        >
         </Route>
         <Route>
           <NotFound />
