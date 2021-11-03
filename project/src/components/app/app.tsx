@@ -43,7 +43,7 @@ function App({films, reviews}: Props): JSX.Element {
         >
         </Route>
         <Route path={AppRoute.Player} render={(routeProps) =>
-          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <Player film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
+          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <Player src={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0].video_link} isPlaying poster={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0].poster_image}/> : <NotFound />}
         exact
         >
         </Route>

@@ -1,43 +1,44 @@
-import {FilmType} from '../../types/types';
+import {useEffect, useRef} from 'react';
 
-type Props = {
-  film: FilmType,
+type VideoPlayerProps = {
+  poster: string,
+  isPlaying: boolean;
+  src: string;
 }
 
-function Player({film}:Props): JSX.Element {
+const PREVIEW_DELAY = 1000;
+
+function Player({poster, isPlaying, src}:VideoPlayerProps): JSX.Element {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    if (videoRef.current && isPlaying) {
+      timeoutId = setTimeout(() => {
+        videoRef.current?.play();
+      }, PREVIEW_DELAY);
+    }
+
+    if (videoRef.current && !isPlaying) {
+      videoRef.current.load();
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [isPlaying, videoRef]);
+  // eslint-disable-next-line no-console
+  console.log(src);
+
   return (
-    <div className="player">
-      <video src={film.video_link} className="player__video" poster={film.poster_image} muted controls></video>
-
-      <button type="button" className="player__exit">Exit</button>
-
-      <div className="player__controls">
-        <div className="player__controls-row">
-          <div className="player__time">
-            <progress className="player__progress" value={0} max={100}></progress>
-            <div className="player__toggler" style={{left: '30%'}}>Toggler</div>
-          </div>
-          <div className="player__time-value">1:30:29</div>
-        </div>
-
-        <div className="player__controls-row">
-          <button type="button" className="player__play" data-state="play">
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
-            </svg>
-            <span>Play</span>
-          </button>
-          <div className="player__name">{film.name}</div>
-
-          <button type="button" className="player__full-screen" data-state="go-fullscreen">
-            <svg viewBox="0 0 27 27" width="27" height="27">
-              <use xlinkHref="#full-screen"></use>
-            </svg>
-            <span>Full screen</span>
-          </button>
-        </div>
-      </div>
-    </div>
+    <video
+      ref={videoRef}
+      poster={poster}
+      src={src}
+      width="280"
+      height="175"
+      muted
+    />
   );
 }
 
