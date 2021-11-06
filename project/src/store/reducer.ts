@@ -7,7 +7,7 @@ const initialState = {
   films: Films,
 } as const;
 
-const reducer = (action: Actions, state: State = initialState): State => {
+const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.ChangeGenre: {
       return {...state, genre: action.payload.genre};
