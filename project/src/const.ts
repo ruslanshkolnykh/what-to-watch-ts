@@ -11,3 +11,20 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum ActionType {
+  ChangeGenre = 'changeGenre',
+}
+
+export enum GenreList {
+  AllGenres = 'allGenres',
+  Comedies = 'Comedies',
+  Crime = 'Crime',
+  Documentary = 'Documentary',
+  Dramas = 'Drama',
+  Horror = 'Horror',
+  KidsAndFamily = 'kidsAndFamily',
+  Romance = 'Romance',
+  SciFi = 'Sci-Fi',
+  Thrillers = 'Thriller',
+}

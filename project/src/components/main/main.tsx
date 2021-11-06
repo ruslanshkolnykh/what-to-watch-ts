@@ -1,15 +1,34 @@
-import {FilmType} from '../../types/types';
+import {FilmType, State} from '../../types/types';
 import MovieList from '../movie-list/movie-list';
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import {AppRoute} from '../../const';
-import {Link} from 'react-router-dom';
+import GenresList from '../genre-list/genre-list';
+import {connect, ConnectedProps} from 'react-redux';
+import {GenreList} from '../../const';
 
-type Props ={
+
+const mapStateToProps = ({films, genre}: State) => ({
+  films: getFilteredFilms(films, genre),
+});
+
+
+const connector = connect(mapStateToProps);
+
+type MainProps = ConnectedProps<typeof connector> & {
   films:FilmType[],
 }
 
-function Main({films}:Props): JSX.Element {
+const getFilteredFilms = (films:FilmType[], genre:string) => {
+
+  if (genre === GenreList.AllGenres) {
+    return films;
+  }
+
+  return films.filter((film:FilmType) => film.genre === genre);
+};
+
+
+function Main({films}: MainProps): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -28,10 +47,10 @@ function Main({films}:Props): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{films[0].name}</h2>
+              <h2 className="film-card__title">films[0].name</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{films[0].genre}</span>
-                <span className="film-card__year">{films[0].released}</span>
+                <span className="film-card__genre">films[0].genre</span>
+                <span className="film-card__year">films[0].released</span>
               </p>
 
               <div className="film-card__buttons">
@@ -57,38 +76,7 @@ function Main({films}:Props): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <Link to={AppRoute.Main} className="catalog__genres-link">All genres</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to={AppRoute.Main} className="catalog__genres-link">Comedies</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to={AppRoute.Main} className="catalog__genres-link">Crime</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to={AppRoute.Main} className="catalog__genres-link">Dramas</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to={AppRoute.Main} className="catalog__genres-link">Horror</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to={AppRoute.Main} className="catalog__genres-link">Kids & Family</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to={AppRoute.Main} className="catalog__genres-link">Romance</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to={AppRoute.Main} className="catalog__genres-link">Sci-Fi</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link to={AppRoute.Main} className="catalog__genres-link">Thrillers</Link>
-            </li>
-          </ul>
+          <GenresList />
 
           <div className="catalog__films-list">
             <MovieList films={films} />
@@ -105,4 +93,4 @@ function Main({films}:Props): JSX.Element {
   );
 }
 
-export default Main;
+export default connector(Main);

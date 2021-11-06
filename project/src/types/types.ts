@@ -1,3 +1,6 @@
+import {setGenre} from '../store/action';
+import {GenreList} from '../const';
+
 export type FilmType = {
   'name': string,
   'poster_image': string,
@@ -16,7 +19,7 @@ export type FilmType = {
   'is_favorite': boolean,
   'video_link': string,
   'preview_video_link': string
-}
+};
 
 export type ReviewType = {
   id: number,
@@ -27,10 +30,23 @@ export type ReviewType = {
   'rating': number,
   'comment': string,
   'date': string
-}
+};
 
 export type PromoMovie = {
   title: string,
   genre: string,
   date: number
-}
+};
+
+
+export type Genre = {
+  title: string,
+  value: GenreList,
+};
+
+export type State = {
+  genre: GenreList,
+  films: FilmType[],
+};
+
+export type Actions = ReturnType<typeof setGenre>;
