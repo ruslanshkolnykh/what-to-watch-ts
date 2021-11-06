@@ -4,8 +4,9 @@ import Header from '../header/header';
 import Footer from '../footer/footer';
 import GenresList from '../genre-list/genre-list';
 import {connect, ConnectedProps} from 'react-redux';
-import {GenreList} from '../../const';
-
+import {GenreList, FILM_STEP_NUMBER} from '../../const';
+import ShowMore from '../show-more/show-more';
+import {useState} from 'react';
 
 const mapStateToProps = ({films, genre}: State) => ({
   films: getFilteredFilms(films, genre),
@@ -27,8 +28,9 @@ const getFilteredFilms = (films:FilmType[], genre:string) => {
   return films.filter((film:FilmType) => film.genre === genre);
 };
 
-
 function Main({films}: MainProps): JSX.Element {
+  const [filmListAmount, changeFilmListAmount] = useState(FILM_STEP_NUMBER);
+
   return (
     <>
       <section className="film-card">
@@ -79,12 +81,10 @@ function Main({films}: MainProps): JSX.Element {
           <GenresList />
 
           <div className="catalog__films-list">
-            <MovieList films={films} />
+            <MovieList films={films.slice(0, filmListAmount)} />
           </div>
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {filmListAmount < films.length ? <ShowMore changeFilmListAmount={changeFilmListAmount} filmsAmount={filmListAmount}/> : ''}
         </section>
 
         <Footer />

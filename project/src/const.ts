@@ -28,3 +28,5 @@ export enum GenreList {
   SciFi = 'Sci-Fi',
   Thrillers = 'Thriller',
 }
+
+export const FILM_STEP_NUMBER = 8;
