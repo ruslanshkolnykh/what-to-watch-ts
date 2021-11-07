@@ -8,19 +8,34 @@ import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 import {AppRoute,AuthorizationStatus} from '../../const';
 import PrivateRoute from '../private-route/private-route';
-import {FilmType, ReviewType} from '../../types/types';
+import {State} from '../../types/types';
+import Spinner from '../spinner/spinner';
+import {connect, ConnectedProps} from 'react-redux';
 
-type Props ={
-  films:FilmType[],
-  reviews:ReviewType[],
-}
+const mapStateToProps = ({films, isDataLoaded, promoFilm}: State) => ({
+  films,
+  isDataLoaded,
+  promoFilm,
+});
 
-function App({films, reviews}: Props): JSX.Element {
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function App(props : PropsFromRedux): JSX.Element {
+  const {isDataLoaded, films, promoFilm} = props;
+
+  if (!isDataLoaded) {
+    return (
+      <Spinner />
+    );
+  }
   return (
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <Main />
+          <Main promoFilm={promoFilm}/>
         </Route>
         <Route path={AppRoute.Login} exact>
           <Login />
@@ -55,4 +70,4 @@ function App({films, reviews}: Props): JSX.Element {
   );
 }
 
-export default App;
+export default connector(App);

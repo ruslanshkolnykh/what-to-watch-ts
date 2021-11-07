@@ -1,5 +1,7 @@
-import {setGenre} from '../store/action';
+import {setGenre, loadPromoFilm, loadFilms, requireAuthorization, requireLogout} from '../store/action';
 import {GenreList} from '../const';
+import {ThunkAction, ThunkDispatch} from 'redux-thunk';
+import {AxiosInstance} from 'axios';
 
 export type FilmType = {
   'name': string,
@@ -32,12 +34,6 @@ export type ReviewType = {
   'date': string
 };
 
-export type PromoMovie = {
-  title: string,
-  genre: string,
-  date: number
-};
-
 
 export type Genre = {
   title: string,
@@ -47,6 +43,22 @@ export type Genre = {
 export type State = {
   genre: GenreList,
   films: FilmType[],
+  isDataLoaded: boolean,
+  promoFilm: FilmType,
 };
 
-export type Actions = ReturnType<typeof setGenre>;
+export type Actions =
+  | ReturnType<typeof setGenre>
+  | ReturnType<typeof loadPromoFilm>
+  | ReturnType<typeof loadFilms>
+  | ReturnType<typeof requireAuthorization>
+  | ReturnType<typeof requireLogout>;
+
+export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
+
+export type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Actions>;
+
+export type AuthData = {
+  login: string;
+  password: string;
+};

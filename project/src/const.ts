@@ -13,7 +13,11 @@ export enum AuthorizationStatus {
 }
 
 export enum ActionType {
-  ChangeGenre = 'changeGenre',
+  ChangeGenre = 'filmList/changeGenre',
+  LoadPromoFilm = 'data/loadPromoFilm',
+  LoadFilms = 'data/loadFilms',
+  RequireAuthorization = 'user/requireAuthorization',
+  RequireLogout = 'user/requireLogout',
 }
 
 export enum GenreList {
@@ -30,3 +34,10 @@ export enum GenreList {
 }
 
 export const FILM_STEP_NUMBER = 8;
+
+export enum APIRoute {
+  PromoFilm = '/promo',
+  Films = '/films',
+  Login = '/login',
+  Logout = '/logout',
+}
