@@ -1,7 +1,9 @@
 import {setGenre, loadPromoFilm, loadFilms, requireAuthorization, requireLogout} from '../store/action';
-import {GenreList} from '../const';
+import {GenreList, AuthorizationStatus} from '../const';
 import {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {AxiosInstance} from 'axios';
+import {Token} from '../services/token';
+import {RootState} from '../store/root-reducer';
 
 export type FilmType = {
   'name': string,
@@ -40,12 +42,19 @@ export type Genre = {
   value: GenreList,
 };
 
-export type State = {
-  genre: GenreList,
-  films: FilmType[],
-  isDataLoaded: boolean,
-  promoFilm: FilmType,
-};
+// export type FilmsData = {
+//   activeGenre: string,
+//   films: FilmType[],
+//   favoriteFilms: FilmType[],
+//   film?: FilmType,
+//   promoFilm?: FilmType,
+//   reviews: ReviewType[],
+//   similarFilms: FilmType[],
+//   showedFilms: number,
+//   isDataLoaded: boolean,
+// };
+
+export type State = RootState;
 
 export type Actions =
   | ReturnType<typeof setGenre>
@@ -62,3 +71,27 @@ export type AuthData = {
   login: string;
   password: string;
 };
+
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus,
+  authInfo?: AuthInfo,
+};
+
+export type FilmData = {
+  genre: GenreList,
+  films: FilmType[],
+  promoFilm: FilmType,
+  currentFilm: FilmType,
+  isDataLoaded: boolean,
+  favoriteFilms: FilmType[],
+  similarFilms: FilmType[],
+  comments: ReviewType[],
+};
+
+export type AuthInfo = {
+  id: number,
+  name: string,
+  email: string,
+  avatarUrl: string,
+  token: Token,
+}

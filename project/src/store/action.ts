@@ -1,27 +1,47 @@
-import {ActionType, GenreList, AuthorizationStatus} from '../const';
-import {FilmType} from '../types/types';
+import {ActionType, AppRoute, AuthorizationStatus} from '../const';
+import {FilmType, AuthInfo} from '../types/types';
+import {createAction} from '@reduxjs/toolkit';
 
+export const setGenre = createAction(
+  ActionType.ChangeGenre,
+  (genre: string) => ({
+    payload: genre,
+  }),
+);
 
-export const setGenre = (genre: GenreList) => ({
-  type: ActionType.ChangeGenre,
-  payload: {genre},
-} as const);
+export const loadPromoFilm = createAction(
+  ActionType.LoadPromoFilm,
+  (promoFilm: FilmType) => ({
+    payload: {
+      promoFilm,
+    },
+  }),
+);
 
-export const loadPromoFilm = (film: FilmType) => ({
-  type: ActionType.LoadPromoFilm,
-  payload: film,
-}as const);
+export const loadFilms = createAction(
+  ActionType.LoadFilms,
+  (films: FilmType[]) => ({
+    payload: {
+      films,
+    },
+  }),
+);
 
-export const loadFilms = (films: FilmType[]) => ({
-  type: ActionType.LoadFilms,
-  payload: films,
-} as const);
+export const requireAuthorization = createAction(
+  ActionType.RequireAuthorization,
+  (authorizationStatus: AuthorizationStatus, authInfo?: AuthInfo) => ({
+    payload: {
+      authorizationStatus,
+      authInfo,
+    },
+  }),
+);
 
-export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
-  type: ActionType.RequireAuthorization,
-  payload: authStatus,
-} as const);
+export const requireLogout = createAction(ActionType.RequireLogout);
 
-export const requireLogout = () => ({
-  type: ActionType.RequireLogout,
-} as const);
+export const redirectToRoute = createAction(
+  ActionType.RedirectToRoute,
+  (url: AppRoute | string) => ({
+    payload: url,
+  }),
+);

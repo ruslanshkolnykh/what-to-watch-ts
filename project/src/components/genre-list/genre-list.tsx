@@ -1,7 +1,7 @@
-import {connect, ConnectedProps} from 'react-redux';
-import {Dispatch} from 'redux';
-import {setGenre} from '../../store/action';
-import {Actions, State} from '../../types/types';
+// import {connect, ConnectedProps} from 'react-redux';
+// import {Dispatch} from 'redux';
+// import {setGenre} from '../../store/action';
+// import {Actions, State} from '../../types/types';
 import {GenreList} from '../../const';
 
 const genreType2Text = {
@@ -16,29 +16,29 @@ const genreType2Text = {
   [GenreList.SciFi]: 'Sci-Fi',
   [GenreList.Thrillers]: 'Thrillers',
 };
-
-const mapStateToProps = (state: State) => ({
-  activeGenre: state.genre,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  onGenreClick(genre: GenreList) {
-    dispatch(setGenre(genre));
-  },
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type GenreProps = ConnectedProps<typeof connector> & {
-  activeGenre: GenreList,
-}
-
-function GenresList(props: GenreProps): JSX.Element {
-  const {activeGenre, onGenreClick} = props;
+//
+// const mapStateToProps = (state: State) => ({
+//   activeGenre: state.genre,
+// });
+//
+// const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+//   onGenreClick(genre: GenreList) {
+//     dispatch(setGenre(genre));
+//   },
+// });
+//
+// const connector = connect(mapStateToProps, mapDispatchToProps);
+//
+// type GenreProps = ConnectedProps<typeof connector> & {
+//   activeGenre: GenreList,
+// }
+function GenresList(): JSX.Element {
+// function GenresList(props: GenreProps): JSX.Element {
+//   const {activeGenre, onGenreClick} = props;
 
   const handleGenreClick = (genre: GenreList) => (evt: React.MouseEvent<HTMLAnchorElement>) => {
     evt.preventDefault();
-    onGenreClick(genre);
+    // onGenreClick(genre);
   };
 
   return (
@@ -46,7 +46,7 @@ function GenresList(props: GenreProps): JSX.Element {
       {Object.values(GenreList).map((it) => (
         <li
           key={it}
-          className={`catalog__genres-item ${it === activeGenre ? 'catalog__genres-item--active' : ''} `}
+          // className={`catalog__genres-item ${it === activeGenre ? 'catalog__genres-item--active' : ''} `}
         >
           <a href={'/'} className="catalog__genres-link" id={`genre-${it}`} onClick={handleGenreClick(it)}>
             {genreType2Text[it]}
@@ -57,4 +57,4 @@ function GenresList(props: GenreProps): JSX.Element {
   );
 }
 
-export default connector(GenresList);
+export default GenresList;

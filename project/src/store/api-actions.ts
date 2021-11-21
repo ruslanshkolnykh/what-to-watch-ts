@@ -9,7 +9,7 @@ export const fetchPromoFilmAction = (): ThunkActionResult =>
     dispatch(loadPromoFilm(data));
   };
 
-export const fetchFilmAction = (): ThunkActionResult =>
+export const fetchFilmsAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const {data} = await api.get<FilmType[]>(APIRoute.Films);
     dispatch(loadFilms(data));
@@ -17,10 +17,10 @@ export const fetchFilmAction = (): ThunkActionResult =>
 
 export const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    await api.get(APIRoute.Login)
-      .then(() => {
-        dispatch(requireAuthorization(AuthorizationStatus.Auth));
-      });
+    const { data } = await api.get('/login');
+    const authInfo = (data);
+    const authorizationStatus = authInfo ? AuthorizationStatus.Auth : AuthorizationStatus.NoAuth;
+    dispatch(requireAuthorization(authorizationStatus, authInfo));
   };
 
 export const loginAction = ({login: email, password}: AuthData): ThunkActionResult =>

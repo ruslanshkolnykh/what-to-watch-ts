@@ -1,11 +1,11 @@
-import {FilmType, State} from '../../types/types';
-import MovieList from '../movie-list/movie-list';
-import Header from '../header/header';
-import Footer from '../footer/footer';
-import GenresList from '../genre-list/genre-list';
+import {FilmType, State} from '../../project/src/types/types';
+import MovieList from '../../project/src/components/movie-list/movie-list';
+import Header from '../../project/src/components/header/header';
+import Footer from '../../project/src/components/footer/footer';
+import GenresList from '../../project/src/components/genre-list/genre-list';
 import {connect, ConnectedProps} from 'react-redux';
-import {GenreList, FILM_STEP_NUMBER} from '../../const';
-import ShowMore from '../show-more/show-more';
+import {GenreList, FILM_STEP_NUMBER} from '../../project/src/const';
+import ShowMore from '../../project/src/components/show-more/show-more';
 import {useState} from 'react';
 
 const mapStateToProps = ({films, genre, promoFilm}: State) => ({

@@ -4,7 +4,8 @@ export enum AppRoute {
   MyList = '/mylist',
   Film = '/films/:id',
   Review = '/films/:id/review',
-  Player = '/player/:id'
+  Player = '/player/:id',
+  NotFound = '/not-found',
 }
 export enum AuthorizationStatus {
   Auth = 'AUTH',
@@ -18,6 +19,7 @@ export enum ActionType {
   LoadFilms = 'data/loadFilms',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
+  RedirectToRoute = 'main/redirectToRoute',
 }
 
 export enum GenreList {
@@ -40,4 +42,29 @@ export enum APIRoute {
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
+}
+
+export const FilmInitial =   {
+  'name':'',
+  'poster_image':'',
+  'preview_image':'',
+  'background_image':'',
+  'background_color':'',
+  'description':'',
+  'rating':0,
+  'scores_count':0,
+  'director':'',
+  'starring':[],
+  'run_time':0,
+  'genre':'',
+  'released':0,
+  'id':0,
+  'is_favorite':false,
+  'video_link':'',
+  'preview_video_link':'',
+};
+
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
 }
